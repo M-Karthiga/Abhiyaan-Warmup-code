@@ -1,0 +1,38 @@
+
+#include <iostream>
+#include<vector>
+using namespace std;
+
+int smallestPrimefactor(int n);
+int smallestPrimefactor(int n) {
+    
+    if (n % 2 == 0) {
+        return 2;//for even numbers
+    }
+    for (int i = 3; i*i<= n; i+=2) {
+        if ((n % i) == 0) {
+            return i;//for odd numbers
+        }
+    }
+    return n;//if n itself was prime
+}
+
+int summation(int n);
+int summation(int n) {
+    int sum=0;
+    for (int i = 2; i <= n; i++) {
+        sum += smallestPrimefactor(i);
+    }
+    return sum;
+    
+}
+int main() {
+    int input;
+    cout << "Enter a number n = ";
+    cin >> input;
+
+    int result = summation(input);
+    //printf("sum= %d",result);
+    cout << "The summation of smallest prime factors from 2 to " << input << " is " << result << endl;
+
+}
